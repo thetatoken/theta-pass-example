@@ -5,4 +5,4 @@ Example on using [ThetaPass](https://docs.thetatoken.org/docs/thetapass-for-dapp
 ### `yarn start`
 
 Runs the app in the development mode.
-Open [http://localhost:3010](http://localhost:3010) to view it in the browser.
+Open [http://localhost:3011](http://localhost:3011) to view it in the browser.
