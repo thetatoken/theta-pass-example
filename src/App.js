@@ -26,15 +26,18 @@ class App extends React.Component {
     this.finishViaRedirect();
   }
 
-  refreshOwnershipChecks = async () => {
-    const {walletAddress} = this.state;
-
-    const nftContractAddress = ThetaZillaContractAddress;
+  isOwnerOfNFT = async (nftContractAddress, walletAddress) => {
     const nftABI = ThetaPass.THETA_DROP_NFT_ABI;
     const provider = new thetajs.providers.HttpProvider();
     const contract = new thetajs.Contract(nftContractAddress, nftABI, provider);
     const balance = await contract.balanceOf(walletAddress);
-    const isOwner = (balance.toNumber() > 0);
+
+    return (balance.toNumber() > 0);
+  }
+
+  refreshOwnershipChecks = async () => {
+    const {walletAddress} = this.state;
+    const isOwner = await this.isOwnerOfNFT(ThetaZillaContractAddress, walletAddress);
 
     this.setState({
       isOwner: isOwner
